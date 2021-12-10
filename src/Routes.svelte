@@ -6,7 +6,7 @@ import {wrap} from 'svelte-spa-router/wrap';
 
 import Home from "./Links/Home.svelte";
 import Admin from "./Links/Admin.svelte";
-import User from "./Links/User.svelte";
+// import User from "./Links/User.svelte";
 import Params from "./Links/Params.svelte";
 import NotFound from "./Links/NotFound.svelte";
 
@@ -19,7 +19,9 @@ var routes = {
     '/admin/*': Admin,
     '/params/:first/:last?': Params,
     '/user':wrap({
-        component: User,
+        asyncComponent: () => import('./Links/User.svelte'),
+        // loadingComponent: Loading,
+        // component: User,
         props: {foo: 'bar'},
         conditions:[
              (detail) => {
@@ -42,7 +44,7 @@ $: params= new URLSearchParams($querystring);
     <li><a href="#/user">User</a></li>
     <li><a href="#/params/mike/john">Params1</a></li>
     <li><a href="#/params/mike/">Params2</a></li>
-    <li><a href="#/user?name=hahah&sex=male">Query</a></li>
+    <li><a href="#/params/john?name=hahah&sex=male">Query</a></li>
     <li><a href="#/does/not/exist">Not found</a></li>
     <li><button on:click={()=>{push('/link1')}}>go to link1</button></li>
 </ul>

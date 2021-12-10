@@ -1,6 +1,6 @@
 // import '../node_modules/materialize-css/dist/js/materialize'
 // import '../node_modules/materialize-css/dist/css/materialize.css'
-import './global.css'
+// import './global.css'
 
 import App from './App.svelte';
 
